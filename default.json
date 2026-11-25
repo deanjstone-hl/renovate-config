@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Dashboard-only Renovate: lists every update on the Dependency Dashboard and opens no branch or PR until its box is ticked.",
+  "extends": ["config:recommended"],
+  "timezone": "Australia/Sydney",
+  "enabledManagers": ["github-actions", "npm", "pep621", "pip_requirements", "pip_setup"],
+  "dependencyDashboard": true,
+  "dependencyDashboardLabels": ["type:chore", "mode:afk", "wave:later"],
+  "dependencyDashboardOSVVulnerabilitySummary": "unresolved",
+  "dependencyDashboardApproval": true,
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "dependencyDashboardApproval": true
+  },
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "packageRules": [
+    {
+      "description": "npm: one group for minor and patch updates",
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "npm (minor and patch)"
+    },
+    {
+      "description": "Python (pip, pyproject, uv): one group for minor and patch updates",
+      "matchManagers": ["pep621", "pip_requirements", "pip_setup"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Python (minor and patch)"
+    },
+    {
+      "description": "GitHub Actions: one group for minor and patch updates",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "GitHub Actions (minor and patch)"
+    }
+  ]
+}
